@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%- title %></title>
+
+    <!-- Viewport mobile tag for sensible mobile support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <link rel="icon" href="/images/favicon.png" type='image/png'>
+    <link rel="apple-touch-icon" sizes="144x144" href="images/apple-icon-144x144.png" />
+    
+    <!--  
+        Stylesheets and Preprocessors
+        ==============================
+
+        You can always bring in CSS files manually with `link` tags, or asynchronously
+        on the client using a solution like AMD (RequireJS).  Or, if you like, you can
+        take advantage of Sails' boilerplate asset management.
+
+        By default, stylesheets from your `assets/linker/styles` folder are included
+        here automatically.  Both CSS (.css) and LESS (.less) are supported.
+        In production, your styles will be minified and concatenated into a single file.
+        
+        To customize any part of the built-in behavior, just edit your Gruntfile.
+        For example, here are a few things you could do:
+            
+            + Change the order of your CSS files
+            + Import stylesheets from other directories
+            + Use a different or additional preprocessor, like SASS, SCSS or Stylus
+    -->
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,700,300,400' rel='stylesheet' type='text/css'>
+    <script src="//use.typekit.net/ifb1kqx.js"></script>
+    <script>try{Typekit.load();}catch(e){}</script>
+    <!--STYLES-->
+    <link rel="stylesheet" href="/linker/styles/application.css">
+    <link rel="stylesheet" href="/linker/styles/bootstrap.min.css">
+    <link rel="stylesheet" href="/linker/styles/dashboard.css">
+    <link rel="stylesheet" href="/linker/styles/font-awesome.min.css">
+    <link rel="stylesheet" href="/linker/styles/footer.css">
+    <link rel="stylesheet" href="/linker/styles/login.css">
+    <link rel="stylesheet" href="/linker/styles/specific.css">
+    <!--STYLES END-->
+  </head>
+
+  <body>
+    <!-- <div class="color-strip"></div> -->
+    <div class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-app">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/" class="navbar-brand">
+                    <img src="/images/logotype.png" alt="logo">
+                </a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbar-app">
+                <div class="nav navbar-nav navbar-left">
+                    <ul class="nav navbar-nav">
+                        <!--
+                        <% if (typeof active !== 'undefined') { %>
+                            <% if (active === 'dashboard') { %>
+                                <li class="current"><a href="/"><i class="fa fa-home"></i> Dashboard</a></li>
+                                <li><a href="/events/"><i class="fa fa-calendar"></i> Events</a></li>
+                                <li><a href="/event/new"><i class="fa fa-plus-square"></i> Create</a></li>
+                            <% } else if (active === 'event') { %>
+                                <li><a href="/"><i class="fa fa-home"></i> Dashboard</a></li>
+                                <li class="current"><a href="/events/"><i class="fa fa-calendar"></i> Events</a></li>
+                                <li><a href="/event/new"><i class="fa fa-plus-square"></i> Create</a></li>
+                            <% } else if (active === 'new') { %>
+                                <li><a href="/"><i class="fa fa-home"></i> Dashboard</a></li>
+                                <li><a href="/events/"><i class="fa fa-calendar"></i> Events</a></li>
+                                <li class="current"><a href="/event/new"><i class="fa fa-plus-square"></i> Create</a></li>
+                            <% } else { %>
+                                <li><a href="/"><i class="fa fa-home"></i> Dashboard</a></li>
+                                <li><a href="/events/"><i class="fa fa-calendar"></i> Events</a></li>
+                                <li><a href="/event/new"><i class="fa fa-plus-square"></i> Create</a></li>
+                            <%  } %>
+                        <% } else { %>
+                                <li><a href="/"><i class="fa fa-home"></i> Dashboard</a></li>
+                                <li><a href="/events/"><i class="fa fa-calendar"></i> Events</a></li>
+                                <li><a href="/event/new"><i class="fa fa-plus-square"></i> Create</a></li>
+                        <% } %>
+                        -->
+                        <li class="nohover">
+                            <form action="/search" class="searchForm">
+                                <% if (typeof(query) !== 'undefined') { %>
+                                    <input type="text" class="text" placeholder="Type to search..." name="search" id="search" value="<%= query %>">
+                                <% } else { %>
+                                    <input type="text" class="text" placeholder="Type to search..." name="search" id="search">
+                                <% } %>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+
+                <ul class="nav navbar-right navbar-nav">
+                    <!-- <li><a href="/event/new"><i class="fa fa-plus"></i></a></li> -->
+                    <% if (req.session.user) { %>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                                <%= req.session.user.firstName%> <%=req.session.user.lastName%> <img src="<%= ProfileService.get_gravatar(req.session.user.email) %>" class="img-circle" height="38">
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li class="newEvent"><a href="/event/new">Create Event</a></li>
+                                <li><a href="/events"><i class="fa fa-calendar"> </i>My Events</a></li>
+                                <!-- <li class="split"></li> -->
+                                <li><a href="/profile"><i class="fa fa-user"></i> Profile</a></li>
+                                <li><a href="/profile/settings"><i class="fa fa-cog"></i> Settings</a></li>
+                                <li><a href="/profile/logout"><i class="fa fa-sign-out"></i> Logout</a></li>
+                            </ul>
+                        </li>
+                    <% } else { %>
+                        <li>
+                            <a href="/profile/login" class="btn btn-login">Login</a>
+                        </li>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <% if (typeof(wrap) === 'undefined') { %>
+        <div class="container">
+            <%- body %>
+        </div>
+    <% } else { %>
+        <%- body %>
+    <% } %>
+
+    <% if (typeof(nofoot) === 'undefined') { %>
+        <footer class="page-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h4>Plan</h4>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </div>
+
+                    <div class="col-sm-3">
+                        <h4>Plan</h4>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </div>
+
+                    <div class="col-sm-3">
+                        <h4>Plan</h4>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </div>
+
+                    <div class="col-sm-3">
+                        <h4>Plan</h4>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <a href="#" title="About">About</a> |
+                        <a href="#" title="Careers">Careers</a> |
+                        <a href="#" title="Blog">Blog</a> |
+                        <a href="#" title="Support">Support</a> |
+                        <a href="#" title="Developers">Developers</a> |
+                        <a href="#" title="Terms">Terms</a> |
+                        <a href="#" title="Privacy">Privacy</a>
+                    </div>
+                </div> 
+                <div class="row">
+                    <div class="col-sm-12">
+                        &copy; 2015 Fiesta
+                    </div>
+                </div>
+            </div>
+        </footer>
+    <% } %>
+
+    <!--
+        Client-side Templates
+        ========================
+
+    		HTML templates are important prerequisites of modern, rich client applications.
+        To work their magic, frameworks like Backbone, Angular, Ember, and Knockout require
+        that you load these templates client-side.
+
+        By default, your Gruntfile is configured to automatically load and precompile
+        client-side JST templates in your `assets/linker/templates` folder, then
+        include them here automatically.
+        
+        To customize this behavior to fit your needs, just edit your Gruntfile.
+        For example, here are a few things you could do:
+
+            + Import templates from other directories
+            + Use a different template engine (handlebars, jade, dust, etc.)
+            + Internationalize your templates using a server-side stringfile
+              before they're served.
+    -->
+
+    <!--TEMPLATES-->
+    
+    <!--TEMPLATES END-->
+
+
+    <!--
+
+      Client-side Javascript
+      ========================
+
+      You can always bring in JS files manually with `script` tags, or asynchronously
+      on the client using a solution like AMD (RequireJS).  Or, if you like, you can 
+      take advantage of Sails' boilerplate asset management.
+
+      By default, filesin your `assets/linker/js` folder are included here
+      automatically.  Both JavaScript (.js) and CoffeeScript (.coffee) are supported.
+      In production, your scripts will be minified and concatenated into a single file.
+      
+      To customize any part of the built-in behavior, just edit your Gruntfile.
+      For example, here are a few things you could do:
+          
+          + Change the order of your scripts
+          + Import scripts from other directories
+          + Use a different preprocessor, like TypeScript
+
+    -->
+
+    <!-- <script src="/linker/js/jquery-2.1.1.min.js"></script> -->
+    <!--SCRIPTS-->
+    <script src="/linker/js/socket.io.js"></script>
+    <script src="/linker/js/sails.io.js"></script>
+    <script src="/linker/js/app.js"></script>
+    <script src="/linker/js/jquery-2.1.1.min.js"></script>
+    <script src="/linker/js/bootstrap.min.js"></script>
+    <script src="/linker/js/card.js"></script>
+    <script src="/linker/js/underscore-min.js"></script>
+    <script src="/linker/js/chartkick.js"></script>
+    <!-- SCRIPTS END -->
+
+    <script>
+        $(document).ready(function() {
+            $(".dropdown-menu").width($(".dropdown-toggle").width());
+        });
+    </script>
+  </body>
+</html>

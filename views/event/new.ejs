@@ -1,0 +1,189 @@
+<div class="pageheader">
+  <div class="container">
+    <h1>Create A New Event</h1>
+  </div>
+</div>
+
+<div class="container">
+  <form action="/event/new" method="post" enctype="multipart/form-data">
+    <div class="panel panel-default">
+      <div class="panel-heading">Basic Info</div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-sm-8">
+            <div class="form-group">
+              <label for="name">Event Name</label>
+              <input type="text" name="name" id="name" class="form-control" autocomplete="off" />
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="sponser">Sponsor</label>
+              <input type="text" name="sponser" id="sponser" class="form-control" />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="desc">Description</label>
+              <input type="text" name="desc" id="desc" class="form-control" autocomplete="off" />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="category">Category</label>
+              <select name="category" id="category" class="form-control">
+                <option value="art">Art</option>
+                <option value="business">Business</option>
+                <option value="film">Film</option>
+                <option value="food">Food and Drink</option>
+                <option value="music">Music</option>
+                <option value="family">Family</option>
+                <option value="tech">Technology</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="startDate">Start Date</label>
+              <input type="date" name="startDate" id="startDate" class="form-control" />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="endDate">End Date</label>
+              <input type="date" name="endDate" id="endDate" class="form-control" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">Venue</div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label for="venueName">Venue Name</label>
+              <input type="text" name="venueName" id="venueName" class="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label for="address1">Address Line 1</label>
+              <input type="text" name="address1" id="address1" class="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label for="address2">Address Line 2</label>
+              <input type="text" name="address2" id="address2" class="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="addressCity">City</label>
+              <input type="text" name="addressCity" id="addressCity" class="form-control">
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="addressState">State</label>
+              <input type="text" name="addressState" id="addressState" class="form-control">
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="form-group">
+              <label for="addressZip">Zip Code</label>
+              <input type="number" name="addressZip" id="addressZip" class="form-control">
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="form-group">
+              <label for="fee">Entrance Fee</label>
+              <input type="number" name="fee" id="fee" class="form-control" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">Event Info</div>
+      <div class="panel-body event-info">
+        <div class="row">
+          <!-- <div class="col-sm-12"> -->
+            <textarea name="notes" id="notes" cols="30" rows="20"></textarea>
+          <!-- </div> -->
+        </div>
+      </div>
+    </div>
+    
+    <div class="panel panel-default">
+      <div class="panel-heading">Social Accounts</div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="website">Website</label>
+              <input type="text" name="website" class="form-control">
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="form-group">
+              <label for="twitter">Twitter</label>
+              <input type="text" name="twitter" class="form-control">
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="form-group">
+              <label for="instagram">Instagram</label>
+              <input type="text" name="instagram" class="form-control">
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="form-group">
+              <label for="facebook">Facebook</label>
+              <input type="text" name="facebook" class="form-control">
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="form-group">
+              <label for="youtube">YouTube</label>
+              <input type="text" name="youtube" class="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <label for="upload">Header Image</label>
+            <input type="file" name="upload" id="upload">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <input type="submit" class="btn btn-primary" value="Create"><br><br><br>
+  </form>
+</div>
+
+<script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
+<script>
+  tinymce.init({
+    selector:'textarea',
+    menubar: false,
+    statusbar: false,
+    plugins: 'image',
+  });
+</script>

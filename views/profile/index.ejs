@@ -1,0 +1,84 @@
+<style type="text/css">
+	#user-header {
+		background-image: <%-pattern%> !important;
+		padding-top: 20px;
+		padding-bottom: 20px;
+		border-radius: 4px;
+	}
+
+	#user-header {
+		display: table;
+		width: 100%;
+	}
+
+	.profile,
+	.info {
+		display: table-cell;
+		vertical-align: middle;
+		color: #fff;
+	}
+
+/*	h1 {
+		font-family: 'Open Sans';
+		font-weight: 200;
+		color: #fff;
+		padding-top: 40px;
+		font-size: 7em;
+	}
+	h4 {
+		font-family: 'Open Sans';
+		font-weight: 200;
+		color: #fff;
+		margin-left: 8px;
+	}
+*/
+	.img-circle {
+		margin-left: 50px;
+	}
+
+	.quote {
+	  font-family: Georgia, 'Bitstream Charter', serif;
+		font-size: 6em;
+		float: left;
+		margin-right: 5px;
+	}
+
+	blockquote {
+		border-left: 0;
+		padding-left: 0;
+		margin-top: 18px;
+		display: inline-block;
+	}
+
+	.bio {
+		margin-top: -15px;
+	}
+</style>
+
+<div id="user-header">
+	<div class="row">
+		<div class="col-sm-3 profile">
+			<img src="<%= ProfileService.get_gravatar(req.session.user.email) %>" alt="" class="img-circle">
+		</div>
+		<div class="col-sm-9 info">
+			<h1><%= req.session.user.firstName %> <%= req.session.user.lastName %></h1>
+			<h4>@<%= req.session.user.username %></h4>
+			<div class="bio">
+				<div class="quote">&ldquo;</div>
+				<blockquote>
+					<%= req.session.user.bio %>
+				</blockquote>
+			</div>
+		</div>
+	</div>
+	<!-- <div class="row"></div>
+		<div class="col-lg-4">
+			<img src="//placehold.it/300x300" class="img-circle">		
+		</div>
+		<div id="user-info" class="col-lg-8">
+			<h1><%=req.session.user.username%></h1>
+			<h4><%=req.session.user.email%></h4>
+			<h4><%=req.session.user.firstName%> <%=req.session.user.lastName%></h4>
+		</div>
+	</div> -->
+</div>

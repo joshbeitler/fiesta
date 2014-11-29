@@ -1,0 +1,101 @@
+/* Cat box */
+.cat-box {
+    text-align: center;
+    font-size: 2em;
+    color: #fff;
+    padding: 75px 0;
+    transition: all .2s ease;
+    opacity: 1;
+
+    -webkit-box-shadow: 0 1px 10px 2px rgba(0,0,0,0.1);
+            box-shadow: 0 1px 10px 2px rgba(0,0,0,0.1);
+
+    &:hover {
+        opacity: .8;
+    }
+
+    .label {
+        background-color: #fff;
+        padding: 8px;
+        color: #444;
+        border-radius: 0;
+        text-transform: uppercase;
+    }
+}
+
+.cat-art {
+    background-image: url('/images/cat-art.jpg');
+}
+
+.cat-music {
+    background-image: url('/images/cat-music.jpg');
+}
+
+.cat-food {
+    background-image: url('/images/cat-food.jpg');
+}
+
+.cat-more {
+    border: 5px solid #ddd;
+    
+    -webkit-box-shadow: none;
+            box-shadow: none;
+
+    &:hover {
+        border: 5px solid #bbb;
+    }
+}
+
+/* Event box */
+.event-box {
+    &:first-child {
+        padding-left: 0;
+    }
+
+    &:last-child {
+        padding-right: 0;
+    }
+
+    a {
+        color: #444;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
+
+/* Events */
+.events {
+    .event-box {
+        padding: 0;
+        border-radius: 4px;
+        padding: 15px;
+    }
+
+    .event-box:nth-child(4),
+    .event-box:first-child {
+        padding-left: 0;
+    }
+
+    .event-box:nth-child(3) {
+        padding-right: 0;
+    }
+
+    .event-box .header {
+        height: 100px;
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
+    }
+
+    .event-box .body {
+        border: 1px solid #ddd;
+        padding: 15px;
+        border-bottom-left-radius: 2px;
+        border-bottom-right-radius: 2px;
+        padding-bottom: 30px;
+        
+        -webkit-box-shadow: 0 1px 10px 2px rgba(0,0,0,0.1);
+                box-shadow: 0 1px 10px 2px rgba(0,0,0,0.1);
+    }
+}

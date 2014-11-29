@@ -1,0 +1,443 @@
+<style type="text/css">
+
+#rsvp {
+width: 100%;
+height: 100px;
+}
+#name {
+font-size: 5em;
+margin-top: -14px;
+}
+#location {
+margin-top: -5px;
+}
+.info_row_wrap {
+  /*display: table;*/
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 25px;
+  margin-top: -20px;
+  background-image: url('<%= evt.headerImg %>');
+}
+#info_row {
+  width: 100%;
+padding: 75px 0;
+color: #fff;
+
+}
+
+#info_row a,
+#info_row a:link,
+#info_row a:visited {
+  color: #fff;
+  text-decoration: none;
+  transition: all .2s ease;
+  cursor: pointer;
+  font-size: .7em;
+}
+
+#info_row a:hover,
+#info_row a:active {
+  color: #fff;
+  opacity: .5;
+  text-decoration: none;
+}
+
+.delete-buttons{
+  width: 100%;
+}
+
+.notes {
+  color: #333333; 
+  /*font-family: 'Open Sans';*/
+  font-size: 14pt;
+  line-height: 21pt;
+}
+
+.notes img {
+  margin-left: 10px;
+}
+
+#rsvp {
+  background-color: #fff;
+  color: #444;
+  transition: all .2s ease;
+  border: 4px solid #fff;
+  opacity: 1;
+}
+
+#rsvp:hover {
+  background-color: #fff;
+  border: 4px solid #fff;
+  opacity: .9;
+}
+
+.modal {
+  color: #444;
+}
+
+.nomargin {
+  margin: 0;
+  padding: 0;
+}
+</style>
+
+<div class="info_row_wrap">
+  <div class="container">
+    <div id="info_row" class="row">
+      <div class="col-sm-9">
+        <h1 id="name"><%= evt.name %></h1>
+        <h3 id="location">
+          at <%= evt.location.toString() %>
+
+          <% if (evt.owner.id === req.session.user.id) { %>
+            <a href="<%= evt.id %>/edit"class="fa fa-pencil"></a> <a id="deleteEvent" data-toggle="modal" data-target="#deleteEventModal" class="fa fa-times"></a>
+          <% } %>
+        </h3>
+
+        <h2>
+          <% if (typeof(evt.website) !== 'undefined' && evt.website !== '') {%>
+            <a href="<%=evt.website%>" class="fa fa-globe"></a>
+          <%}%>
+                
+          <% if (typeof(evt.facebook) !== 'undefined' && evt.facebook !== '') {%>
+            <a href="http://facebook.com/<%=evt.facebook%>" class="fa fa-facebook-square"></a>
+          <%}%>
+
+          <% if (typeof(evt.youtube) !== 'undefined' && evt.youtube !== '') {%>
+            <a href="http://youtube.com/user/<%=evt.youtube%>" class="fa fa-youtube-play"></a>
+          <%}%>
+                
+          <% if (typeof(evt.twitter) !== 'undefined' && evt.twitter !== '') {%>
+            <a href="http://twitter.com/<%=evt.twitter%>" class="fa fa-twitter-square"></a>
+          <%}%> 
+                
+          <% if (typeof(evt.instagram) !== 'undefined' && evt.instagram !== '') {%>
+            <a href="http://instagram.com/<%=evt.instagram%>" class="fa fa-instagram"></a>
+          <%}%>
+        </h2>
+      </div>
+
+      <div class="col-sm-3 nomargin">
+        <% if (req.session.user) { %>
+          <% if (evt.fee == 0) { %>
+            <button type="button" class="btn btn-success btn-lg" id="rsvp" data-toggle="modal" data-target="#myModal">
+              <i class="fa fa-ticket"></i>
+              Count me in!
+            </button>
+          <% } else { %>
+            <button type="button" class="btn btn-success btn-lg" id="rsvp" data-toggle="modal" data-target="#paymentModel">
+              <i class="fa fa-ticket"></i>
+              Count me in!<br>
+              <small><span class="text-muted">$<%= evt.fee %></span></small>
+            </button>
+          <% } %>
+        <% } else { %>
+          <% if (evt.fee == 0) { %>
+            <button type="button" class="btn btn-success btn-lg" id="rsvp" data-toggle="modal" data-target="#myModal">
+              <i class="fa fa-ticket"></i>
+              Count me in!
+            </button>
+          <% } else { %>
+            <button type="button" class="btn btn-success btn-lg" id="rsvp" data-toggle="modal" data-target="#paymentModel">
+              <i class="fa fa-ticket"></i>
+              Count me in!<br>
+              <small><span class="text-muted">$<%= evt.fee %></span></small>
+            </button>
+          <% } %>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pageheader">
+  <div class="container">
+    <h2>Event Info</h2>
+  </div>
+</div>
+
+<div class="events-row">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <i class="fa fa-calendar"></i> <%= evt.date() %>
+            </div>
+            <div class="col-sm-9">
+                <i class="fa fa-location-arrow"></i> <%= evt.location.address1 %> <%= evt.location.toString() %>
+            </div>
+        </div>
+    </div>
+    <div class="row event-info">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <i class="fa fa-info-circle"></i> <%= evt.category %>
+                </div>
+                <div class="col-sm-9">
+                    <i class="fa fa-money"></i> $<%= evt.fee %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="notes">
+        <%-evt.notes%>
+      </div>
+    </div>
+    <!--
+    <div class="col-lg-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">Owner</div>
+        <div class="panel-body">
+                    <div class="media">
+            <span class="media-left">
+              <img src="<%= ProfileService.get_gravatar(evt.owner.email) %>" height="50" class="img-circle">
+            </span>
+            <div class="media-body">
+              <h5><%=evt.owner.firstName%> <%=evt.owner.lastName%></h5>
+              <h6><%=evt.owner.email%></h6>
+            </div>      
+          </div>
+        </div>
+      </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">Social</div>
+          <div class="panel-body">
+            <ul>
+              <% if (typeof(evt.website) !== 'undefined' && evt.website !== '') {%>
+                <li><a href="<%=evt.website%>"><%= evt.website %></a></li>
+              <%}%>
+              
+              <% if (typeof(evt.facebook) !== 'undefined' && evt.facebook !== '') {%>
+                <li><a href="http://facebook.com/<%=evt.facebook%>">Facebook</a></li>
+              <%}%>
+
+              <% if (typeof(evt.youtube) !== 'undefined' && evt.youtube !== '') {%>
+                <li><a href="http://youtube.com/user/<%=evt.youtube%>">YouTube</a></li>
+              <%}%>
+              
+              <% if (typeof(evt.twitter) !== 'undefined' && evt.twitter !== '') {%>
+                <li><a href="http://twitter.com/<%=evt.twitter%>">Twitter</a></li>
+              <%}%> 
+              
+              <% if (typeof(evt.instagram) !== 'undefined' && evt.instagram !== '') {%>
+                <li><a href="http://instagram.com/<%=evt.instagram%>">Instagram</a></li>
+              <%}%>
+            </ul>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">Notes</div>
+          <div class="panel-body">
+            <h5><%= evt.desc %></h5><hr>
+            <h5><b>Admission Fee:</b> $<%= evt.fee %></h5>
+            <h5><b>People Going:</b> <%= attendees.length %></h5>
+            <h5><b>Sponsored By:</b> <%= evt.sponser %></h5>
+          </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">Attending</div>
+            <div class="panel-body">
+            	<% for (var i=0; i<attendees.length; i++) {%>
+					<div class="media">
+						<span class="media-left">
+							<img src="<%= ProfileService.get_gravatar(attendees[i].email) %>" height="50" class="img-circle">
+						</span>
+						<div class="media-body">
+							<h5><%=attendees[i].name%></h5>
+							<% if (attendees[i].email == '') {%>
+								<h6><%=attendees[i].phone%></h6>
+							<%} else {%>
+								<h6><%=attendees[i].email%></h6>
+							<%}%>
+						</div>			
+					</div>
+				<%}%>
+			</div>
+        </div>
+    </div>
+    -->
+</div>
+</div>
+
+<div class="row whos-going">
+    <div class="container">
+        <div class="col-sm-12">
+            <h4>Join <%= attendees.length %> others at <%= evt.name %> <a href="#">Join Them</a></h4>
+            <% for (var i=0; i<attendees.length; i++) {%>
+                <img src="<%= ProfileService.get_gravatar(attendees[i].email) %>" height="50">
+            <%}%>
+        </div>
+    </div>
+</div>
+
+</div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">  Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">RSVP to <%= evt.name %></h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/event/rsvp" method="post">
+                            
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <% if (req.session.user) { %>
+                                <input type="text" name="name" class="form-control" value="<%= req.session.user.firstName %> <%= req.session. user.lastName %>">
+                                <% } else { %>
+                                <input type="text" name="name" class="form-control">
+                                <% } %>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="email">Email Address</label>
+                                        <% if (req.session.user) { %>
+                                        <input name="email" type="email" class="form-control" value="<%=req.session.user.email %>">
+                                        <% } else { %>
+                                        <input name="email" type="email" class="form-control">
+                                        <% } %>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="phone">Phone Number</label>
+                                        <% if (req.session.user && req.session.user.phone !== undefined)
+                                          {var phone = req.session.user.phone} else {var phone = ''}%>
+                                        <input name="phone" type="text" class="form-control" value="<%=phone %>">
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" name="id" id="id" value=<%= evt.id %>> <!-- Simply sends the ID -->
+                            </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <input type="submit" class="btn btn-primary" value="RSVP!">
+                    </div>
+                    </div>
+                    </form>
+            </div>
+            </div>
+        </div>
+
+        <!-- Delete Event Modal -->
+        <div class="modal fade" id="deleteEventModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">  Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Delete <%= evt.name %>?</h4>
+                    </div>
+                    <div class="modal-body">
+                      <div class="row">
+                        <div class="col-lg-6">
+                          <button type="button" class="btn btn-primary delete-buttons" data-dismiss="modal">No</button>
+                        </div>
+                        <div class="col-lg-6">
+                          <form action="<%= evt.id %>/delete">
+                              <input type="submit" class="btn btn-danger delete-buttons" value="Yes">
+                          </form>
+                        </div> 
+                      </div>
+                    </div>
+                </div>
+          </div>
+      </div>
+
+      <!-- Payment Modal -->
+      <div class="modal fade" id="paymentModel" tabindex="-1" role="dialog" aria-labelledby="paymentModelLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+              <h4 class="modal-title" id="myModalLabel">Pay and RSVP to <%= evt.name %></h4>
+            </div>
+            <div class="modal-body">
+              <form action="/event/<%= evt.id %>/pay" method="post" id="payment">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <% if (req.session.user) { %>
+                    <input type="text" name="name" class="form-control" value="<%= req.session.user.firstName %> <%= req.session. user.lastName %>">
+                    <% } else { %>
+                    <input type="text" name="name" class="form-control">
+                    <% } %>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="email">Email Address</label>
+                      <% if (req.session.user) { %>
+                        <input name="email" type="email" class="form-control" value="<%= req.session.user.email %>">
+                      <% } else { %>
+                        <input name="email" type="email" class="form-control">
+                      <% } %>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="phone">Phone Number</label>
+                      <% if (req.session.user) { %>
+                        <input name="phone" type="text" class="form-control" value="<%= req.session.user.phone %>">
+                      <% } else { %>
+                        <input name="phone" type="text" class="form-control">
+                      <% } %>
+                    </div>
+                  </div>
+                </div>
+
+                <hr>
+            
+                <div class="row">
+                  <div class="card-wrapper"></div>
+                </div>
+                <br>
+
+                <div class="form-group">
+                  <label for="cardNumber">Card Number</label>
+                  <input class="form-control" type="text" id="cardNumber" name="cardNumber">
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label for="expMonth">Expiration Month</label>
+                      <input class="form-control" id="expMonth" type="number" name="expMonth">
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label for="expYear">Expiration Year</label>
+                      <input class="form-control" id="expYear" type="number" name="expYear">
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label for="cvc">CVC</label>
+                      <input class="form-control" id="cvc" type="number" name="cvc">
+                    </div>
+                  </div>
+                </div>
+
+                <input type="hidden" name="id" id="id" value=<%= evt.id %>> <!-- Simply sends the ID -->
+                <input type="submit" class="hidden">
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" onclick="document.getElementById('payment').submit();">Pay and RSVP</button>
+            </div>
+          </div>
+        </div>
+      </div>

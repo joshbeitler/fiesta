@@ -1,0 +1,272 @@
+<style type="text/css">
+  #gopro {
+    padding-top: 5px;
+  }
+
+  .break {
+    background-color: #C4C4C4;
+    height: 1px;
+    margin-bottom: 5px;
+  }
+
+  .title {
+    font-size: 1.3em;
+    display: block;
+    margin-top: 10px;
+  }
+
+  .description {
+    display: inline-block;
+    margin-bottom: 15px;
+  }
+
+  .description:last-child {
+    margin-bottom: 0;
+  }
+
+  .panel-heading {
+    margin-bottom: -13px;
+  }
+
+  .events .panel-body {
+    border-bottom: 1px solid #ddd;
+  }
+
+  .events .panel-body:last-child {
+    border-bottom: 0;
+  }
+</style>
+
+<!-- <div id="gopro" class="jumbotron jumbotron-dash">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <form action="">
+          <input type="text" name="jumbo-search" id="jumbo-search" value="Find Events Near You...">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+ -->
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h2>Attending</h2>
+    </div>
+  </div>
+  
+  <div class="row events">
+    <div class="col-sm-12">
+      <% for (var i = 0; i < events.length; i++) { %>
+        <div class="col-sm-3 event-box">
+          <div class="header" style="background-image: url('<%= events[i].headerImg %>')"></div>
+          <div class="body">
+            <h3><a href="/event/<%= events[i].id %>" title=""><%= events[i].name %></a></h3>
+            <%= moment(events[i].startDate).format('MMMM D') %> - <%= moment(events[i].endDate).format('MMMM D') %><br>
+            <%= events[i].location.toString() %>
+          </div>
+        </div>
+      <% } %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h2>Find Events</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="col-sm-3 event-box">
+        <a href="#" title="Art">
+          <div class="cat-box cat-art">
+            <span class="label">
+                art
+            </span>
+          </div>
+        </a>
+      </div>
+      <div class="col-sm-3 event-box">
+        <a href="#" title="Music">
+          <div class="cat-box cat-music">
+            <span class="label">
+              music
+            </span>
+          </div>
+        </a>
+      </div>
+      <div class="col-sm-3 event-box">
+        <a href="#" title="Food">
+          <div class="cat-box cat-food">
+            <span class="label">
+              food
+            </span>
+          </div>
+        </a>
+      </div>
+      <div class="col-sm-3 event-box">
+        <a href="#" title="more">
+          <div class="cat-box cat-more">
+            <span class="label">
+              more...
+            </span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+    <!--
+    <div class="row">
+    <h2>Arts</h2>
+    </div>
+    <div class="row">
+      <% for (var i = 0; i < artEvents.length; i++) { %>
+        <div class="col-sm-4 event-box">
+          <div class="header" style="background-image: url('<%= artEvents[i].headerImg %>')"></div>
+          <div class="body">
+            <h3><a href="/event/<%= artEvents[i].id %>" title=""><%= artEvents[i].name %></a></h3>
+            <%= moment(artEvents[i].startDate).format('L') %> - <%= moment(artEvents[i].endDate).format('L') %><br>
+            <%= artEvents[i].location.toString() %>
+          </div>
+        </div>
+      <% } %>
+    </div>
+
+    <div class="row">
+        <h2>Business</h2>
+    </div>
+    <div class="row">
+        <% for (var i = 0; i < bizEvents.length; i++) { %>
+            <div class="col-sm-4 event-box">
+                <div class="header" style="background-image: url('<%= bizEvents[i].headerImg %>')"></div>
+                <div class="body">
+                    <h3><a href="/event/<%= bizEvents[i].id %>" title=""><%= bizEvents[i].name %></a></h3>
+                    <%= moment(bizEvents[i].startDate).format('L') %> - <%= moment(bizEvents[i].endDate).format('L') %><br>
+                    <%= bizEvents[i].location.toString() %>
+                </div>
+            </div>
+        <% } %>
+    </div>
+
+    <div class="row">
+        <h2>Music</h2>
+    </div>
+    <div class="row">
+        <% for (var i = 0; i < musicEvents.length; i++) { %>
+            <div class="col-sm-4 event-box">
+                <div class="header" style="background-image: url('<%= musicEvents[i].headerImg %>')"></div>
+                <div class="body">
+                    <h3><a href="/event/<%= musicEvents[i].id %>" title=""><%= musicEvents[i].name %></a></h3>
+                    <%= moment(musicEvents[i].startDate).format('L') %> - <%= moment(musicEvents[i].endDate).format('L') %><br>
+                    <%= musicEvents[i].location.toString() %>
+                </div>
+            </div>
+        <% } %>
+    </div>
+
+    <div class="row">
+        <h2>Food and Drink</h2>
+    </div>
+    <div class="row">
+        <% for (var i = 0; i < foodEvents.length; i++) { %>
+            <div class="col-sm-4 event-box">
+                <div class="header" style="background-image: url('<%= foodEvents[i].headerImg %>')"></div>
+                <div class="body">
+                    <h3><a href="/event/<%= foodEvents[i].id %>" title=""><%= foodEvents[i].name %></a></h3>
+                    <%= moment(foodEvents[i].startDate).format('L') %> - <%= moment(foodEvents[i].endDate).format('L') %><br>
+                    <%= foodEvents[i].location.toString() %>
+                </div>
+            </div>
+        <% } %>
+    </div>
+
+    <div class="row">
+        <h2>Technology</h2>
+    </div>
+    <div class="row">
+        <% for (var i = 0; i < techEvents.length; i++) { %>
+            <div class="col-sm-4 event-box">
+                <div class="header" style="background-image: url('<%= techEvents[i].headerImg %>')"></div>
+                <div class="body">
+                    <h3><a href="/event/<%= techEvents[i].id %>" title=""><%= techEvents[i].name %></a></h3>
+                    <%= moment(techEvents[i].startDate).format('L') %> - <%= moment(techEvents[i].endDate).format('L') %><br>
+                    <%= techEvents[i].location.toString() %>
+                </div>
+            </div>
+        <% } %>
+    </div>
+    -->
+</div>
+
+
+<!--
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <% if (history.length > 0) {%>
+        <% for (var i = history.length-1; i >= 0; i--) { %>
+          <div class="media">
+            <span class="media-left">
+              <% if (typeof(history[i].email) !== 'undefined') { %>
+                <img class="img-circle" src="<%= ProfileService.get_gravatar(history[i].email) %>" height="50">
+              <% } else { %>
+                <img class="img-circle" src="<%= ProfileService.get_gravatar(req.session.user.email) %>" height="50">
+              <% } %>
+            </span>
+            <div class="media-body">
+              <%= history[i].name %> has RSVP'd to your event: <i><a href="/event/<%= history[i].owner.id %>"><%= history[i].owner.name %></a></i>
+              <h6><%= moment(history[i].createdAt).format('LLL') %></h6>
+            </div>
+          </div>
+        <% } %>
+      <% } else { %>
+        <div class="media-body">
+          <h6>no new notifications</h6>
+        </div>
+      <% } %>
+    </div>
+
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <a href="/events">Events I'm Attending</a> <span class="badge"><%=events.length%></span>
+          <div class="pull-right">
+            <a href="/events/export"><i class="fa fa-cloud-download"></i></a>
+          </div>
+        </div>
+        <div class="panel-body">
+          <% if (events.length > 0) {%>
+            <% for (var i=0; i < events.length; i++){ %>
+              <a href="/event/<%=events[i].id%>"><span class="title"><%=events[i].name%></span></a> <span class="description"><%=events[i].desc%></span>
+              <% if (events.length - i > 1) {%>
+                <div class="break"></div>
+              <%}%>
+            <%}%>
+          <%} else {%>
+            <h5>What's this? Looks like you aren't attending any events. Go find some!</h5>
+          <%}%>
+        </div>
+      </div>
+      <div class="panel events panel-default">
+        <div class="panel-heading">
+          <a href="/events">My Events</a> <span class="badge"><%=userEvents.length%></span>
+          <div class="pull-right">
+            <a href="/event/new"><i class="fa fa-plus"></i></a>
+          </div>
+        </div>
+        <div>
+          <% if (userEvents.length > 0) {%>
+            <% for (var i=0; i < userEvents.length; i++){ %>
+              <div class="panel-body"><a href="/event/<%=userEvents[i].id%>"><span class="title"><%=userEvents[i].name%></span></a> <span class="description"><%=userEvents[i].desc%></span></div>
+            <%}%>
+          <%} else {%>
+            <div class="panel-body"><h5>What's this? Looks like you don't have any events! How 'bout you throw a <a href="/event/new">party!</a></h5></div> 
+          <%}%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+-->

@@ -1,0 +1,167 @@
+<title>Edit Event</title>
+
+<h1>Edit Event</h1><br>
+<form action="/event/<%= evt.id %>/edit" method="post">
+  <div class="panel panel-default">
+    <div class="panel-heading">Basic Info</div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="form-group">
+            <label for="name">Event Name</label>
+            <input type="text" name="name" id="name" class="form-control" value="<%= evt.name %>"  autocomplete="off" />
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="sponser">Sponsor</label>
+            <input type="text" name="sponser" id="sponser" class="form-control" value="<%= evt.sponser %>" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label for="desc">Description</label>
+            <input type="text" name="desc" id="desc" class="form-control" value="<%= evt.desc %>" autocomplete="off" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="name">Start Date</label>
+            <% var newStartDate = evt.startDate; if (typeof newStartDate !== 'string') {newStartDate = newStartDate.toISOString();} %>
+            <input type="date" name="startDate" id="startDate" class="form-control" value="<%= newStartDate.substr(0,10) %>"/>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="name">End Date</label>
+            <% var newEndDate = evt.endDate; if (typeof newEndDate !== 'string') {newEndDate = newEndDate.toISOString();} %>
+            <input type="date" name="endDate" id="endDate" class="form-control" value="<%= newEndDate.substr(0,10) %>"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">Venue</div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label for="address1">Address Line 1</label>
+            <input type="text" name="address1" id="address1" class="form-control" value="<%= evt.location.address1 %>">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label for="address2">Address Line 2</label>
+            <input type="text" name="address2" id="address2" class="form-control" value="<%= evt.location.address2 %>">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="addressCity">City</label>
+            <input type="text" name="addressCity" id="addressCity" class="form-control" value="<%= evt.location.city %>">
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="addressState">State</label>
+            <input type="text" name="addressState" id="addressState" class="form-control" value="<%= evt.location.state %>">
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group">
+            <label for="addressZip">Zip Code</label>
+            <input type="number" name="addressZip" id="addressZip" class="form-control" value="<%= evt.location.zipcode %>">
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group">
+            <label for="fee">Entrance Fee</label>
+            <input type="number" name="fee" id="fee" class="form-control" value="<%= evt.fee %>" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">Event Info</div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-sm-12">
+          <textarea name="notes" id="notes" cols="30" rows="10"><%= evt.notes %></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="panel panel-default">
+    <div class="panel-heading">Social Accounts</div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="website">Website</label>
+            <input type="text" name="website" class="form-control" value="<%= evt.website %>" >
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group">
+            <label for="twitter">Twitter</label>
+            <input type="text" name="twitter" class="form-control" value="<%= evt.twitter %>" >
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group">
+            <label for="instagram">Instagram</label>
+            <input type="text" name="instagram" class="form-control" value="<%= evt.instagram %>" >
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group">
+            <label for="facebook">Facebook</label>
+            <input type="text" name="facebook" class="form-control" value="<%= evt.facebook %>" >
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group">
+            <label for="youtube">YouTube</label>
+            <input type="text" name="youtube" class="form-control" value="<%= evt.youtube %>" >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">Statistics</div>
+    <div class="panel-body">
+      <b>Total Page Views: </b> <%= views.length %>
+    </div>
+  </div>
+
+  <input type="hidden" name="id" id="id" value="<%= evt.id %>"> <!-- Simply sends the ID -->
+  <input type="submit" class="btn btn-primary" value="Save"><br><br><br>
+</form>
+
+<script src="/linker/js/jquery-2.1.1.min.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
+<script>
+  tinymce.init({
+    selector:'textarea',
+    menubar: false,
+    statusbar: false,
+    plugins: 'image',
+  });
+</script>

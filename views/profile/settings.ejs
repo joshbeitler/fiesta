@@ -1,0 +1,49 @@
+
+<div role="tabpanel">
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="active"><a href="#">Profile</a></li>
+      <li role="presentation"><a href="#">Developer</a></li>
+    </ul>
+    
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="account">
+        <form action="/profile/settings" method="post">
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" name="email" id="email" class="form-control" value="<%=req.session.user.email%>">
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" autocomplete="off" class="form-control" value="">
+          </div>
+
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" class="form-control" value="<%=req.session.user.username%>">
+          </div>
+
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" name="firstName" id="firstName" class="form-control" value="<%=req.session.user.firstName%>">
+          </div>
+
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" name="lastName" id="lastName" class="form-control" value="<%=req.session.user.lastName%>">
+          </div>
+
+          <div class="form-group">
+            <label for="bio">Bio</label>
+            <input type="text" name="bio" id="bio" class="form-control" value="<%=req.session.user.bio%>" autocomplete="off">
+          </div>
+
+          <input type="submit" class="btn btn-primary" value="Save">
+        </form>
+      </div>
+      <div role="tabpanel" class="tab-pane">
+        
+      </div>
+    </div>
+</div>
+

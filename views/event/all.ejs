@@ -1,0 +1,187 @@
+<style type="text/css">
+	
+	#gopro {
+		padding-top: 5px;
+	}
+
+	.break {
+		background-color: #C4C4C4;
+		height: 1px;
+		margin-bottom: 5px;
+	}
+
+	.title {
+		font-size: 1.3em;
+		display: block;
+		margin-top: 10px;
+	}
+
+	.description {
+		display: inline-block;
+		margin-bottom: 15px;
+	}
+
+	.description:last-child {
+		margin-bottom: 0;
+	}
+
+	.panel-heading {
+		margin: 0;
+		text-align: center;
+
+	}
+
+	.fa-arrow-circle-right {
+		color: black;
+	}
+
+	.fa-arrow-circle-right:hover {
+		color: green;
+		text-decoration: none;
+	}
+
+	.delete-buttons {
+		width: 100%;
+	}
+	
+</style>
+
+<div class="row">
+	<div class="col-md-6">
+		<h3>My Events</h3>
+		<% if (events.length > 0) { %>
+			<% for (var i=0; i < events.length; i++){ %>
+				<!--<div class="row">-->
+					<!--<div class="col-md-10">-->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3><a href="/event/<%=events[i].id%>"><%=events[i].name%></a><span class="pull-right"><a href="/event/<%=events[i].id%>" class="fa fa-arrow-circle-right"></a></span></h3>
+							</div>
+							<div class="panel-body">
+
+									<%=events[i].desc%>
+									<br>
+									<%=events[i].location%> on <%=events[i].startDate%> - <%= events[i].endDate %>
+
+									<a href="/event/<%= events[i].id %>/edit" class="fa fa-pencil"></a>
+									<!--<a href="/event/<%= events[i].id %>/delete">Delete</a>-->
+									<a id="deleteEvent" data-toggle="modal" data-target="#deleteEventModal" class="fa fa-times"></a>
+					
+									<!--<form action="/events/selectSpecific" method="post">
+										<input type="hidden" name="id" id="<%= events[i].id %>" value="<%= events[i].id %>">
+										<input type="submit" class="btn btn-default delete-button" value="Delete Event"  />
+									<button type="button" class="btn btn-default" id="deleteEvent" data-toggle="modal" data-target="#deleteEventModal">-
+										Delete Event
+									</button>
+									</form>-->
+							</div>
+						<!--</div>-->
+					<!--</div>-->
+				</div>
+
+			        <!-- Delete Event Modal -->
+			        <div class="modal fade" id="deleteEventModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			            <div class="modal-dialog">
+			                <div class="modal-content">
+			                    <div class="modal-header">
+			                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">  Close</span></button>
+			                        <h4 class="modal-title" id="myModalLabel">Delete <%= events[i].name %>?</h4>
+			                    </div>
+			                    <div class="modal-body">
+			                      <div class="row">
+			                        <div class="col-lg-6">
+			                          <button type="button" class="btn btn-primary delete-buttons" data-dismiss="modal">No</button>
+			                        </div>
+			                        <div class="col-lg-6">
+			                          <form action="/event/<%= events[i].id %>/delete">
+			                              <input type="submit" class="btn btn-danger delete-buttons" value="Yes">
+			                          </form>
+			                        </div> 
+			                      </div>
+			                    </div>
+			                </div>
+			          </div>
+			      </div>
+			<%}%>
+		<%} else {%>
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<h5>What's this? Looks like you don't have any events! How 'bout you throw a <a href="/event/new">party!</a></h5>
+				</div>
+			</div>
+		<%}%>
+	</div>
+
+	<!--<div class="col-md-4">
+		
+	</div>-->
+
+
+	<div class="col-md-6">
+		<h3>Events I'm Attending</h3>
+		<% if (attens.length > 0) { %>
+			<% for (var i=0; i < attens.length; i++) { %>
+				<!--<div class="row">
+					<div class="col-md-10">-->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3><a href="/event/<%=attens[i].id%>"><%=attens[i].name%></a><span class="pull-right"><a href="/event/<%=attens[i].id%>" class="fa fa-arrow-circle-right"></a></span></h3>
+							</div>
+							<div class="panel-body">
+
+									<%=attens[i].desc%>
+									<br>
+									<%=attens[i].location%> on <%=attens[i].date%>
+
+									<a href="/event/<%= attens[i].id %>/edit" class="fa fa-pencil"></a>
+									<!--<a href="/event/<%= attens[i].id %>/delete">Delete</a>-->
+									<a id="deleteEvent" data-toggle="modal" data-target="#deleteEventModal" class="fa fa-times"></a>
+					
+									<!--<form action="/events/selectSpecific" method="post">
+										<input type="hidden" name="id" id="<%= attens[i].id %>" value="<%= attens[i].id %>">
+										<input type="submit" class="btn btn-default delete-button" value="Delete Event"  />
+									<button type="button" class="btn btn-default" id="deleteEvent" data-toggle="modal" data-target="#deleteEventModal">-
+										Delete Event
+									</button>
+									</form>-->
+							</div>
+						<!--</div>
+					</div>-->
+				</div>
+
+			        <!-- Delete Event Modal -->
+			        <div class="modal fade" id="deleteEventModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			            <div class="modal-dialog">
+			                <div class="modal-content">
+			                    <div class="modal-header">
+			                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">  Close</span></button>
+			                        <h4 class="modal-title" id="myModalLabel">Delete <%= attens[i].name %>?</h4>
+			                    </div>
+			                    <div class="modal-body">
+			                      <div class="row">
+			                        <div class="col-lg-6">
+			                          <button type="button" class="btn btn-primary delete-buttons" data-dismiss="modal">No</button>
+			                        </div>
+			                        <div class="col-lg-6">
+			                          <form action="/event/<%= attens[i].id %>/delete">
+			                              <input type="submit" class="btn btn-danger delete-buttons" value="Yes">
+			                          </form>
+			                        </div> 
+			                     </div>
+			                    </div>
+			                </div>
+			          </div>
+			      </div>
+			<%}%>
+		<%} else {%>
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<h5>What's this? Looks like you aren't attending any events. Go find some!</h5> <!-- LINK TO PUBLIC EVENTS IN YOUR AREA -->
+				</div>
+			</div>
+		<%}%>
+	</div>
+</div>
+
+
+

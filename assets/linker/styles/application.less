@@ -1,0 +1,288 @@
+@primary-color: #6cd21a;
+
+::selection {
+  background-color: @primary-color;
+  color: #fff;
+}
+
+body {
+  font-family: "proxima-nova", "Helvetica", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "proxima-nova", "Helvetica", sans-serif;
+}
+
+p, div {
+  font-family: "proxima-nova", "Helvetica", sans-serif;
+}
+
+.navbar .container {
+  height: 80px;
+  font-weight: 600;
+
+  i, img {
+    margin-right: 5px;
+  }
+}
+
+.navbar-default {
+  background-color: #fff !important;
+  border-radius: 0 !important;
+}
+
+.navbar-nav {
+  line-height: 80px;
+  height: 80px;
+}
+
+.navbar-nav li a {
+  height: 80px;
+  line-height: 80px;
+  margin-top: 14px;
+}
+
+.dropdown {
+  height: 80px;
+  line-height: 80px;
+  padding-top: 27px;
+}
+
+.dropdown .dropdown-toggle {
+  margin-top: -40px;
+  padding-top: 38px;
+  padding-bottom: 45px;
+  text-align: right;
+
+  img {
+    margin-left: 10px;
+    display: inline-block;
+  }
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu>li>a, 
+.navbar-default .navbar-nav .open .dropdown-menu,
+.navbar-default .navbar-nav .open .dropdown-toggle,
+.navbar-default .navbar-nav .open .dropdown-toggle:focus {
+  background-color: @primary-color;
+  color: #ffffff;
+  min-width: 182px;
+  border-radius: 0;
+  box-shadow: 0 !important;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu>li>a:hover {
+  background-color: darken(@primary-color, 5%);
+}
+
+.split {
+  border: 1px solid darken(@primary-color, 5%);
+  margin-top: 15px;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.navbar-default .navbar-nav .dropdown-menu {
+  margin-top: -15px;
+  border: 0;
+  box-shadow: 0;
+}
+
+.dropdown {
+  .dropdown-menu li,
+  .dropdown-menu li a {
+    line-height: 16pt;
+    height: auto;
+    margin-bottom: -10px;
+  }
+
+  .dropdown-menu li:last-child,
+  .dropdown-menu li a:last-child {
+    line-height: 16pt;
+    height: auto;
+    margin-bottom: 10px;
+  }
+
+  i {
+    width: 25px;
+    text-align: center;
+  }
+}
+
+.navbar-left .navbar-nav li {
+  padding-bottom: 1px;
+  width: 125px;
+  text-align: center;
+  transition: all .2s ease;
+  display: inline-block;
+  line-height: 80px;
+  height: 80px;
+}
+
+.current {
+  a {
+    color: #000 !important;
+    opacity: 1 !important;
+  }
+
+  &:first-child {
+    border-left: 0;
+  }
+}
+
+.navbar-default .navbar-brand {
+  height: 82px;
+  margin-top: 10px;
+  margin-bottom: -5px;
+  border-sizing: border-box;
+}
+
+.panel-heading {
+  border-top: 3px solid @primary-color !important;
+}
+
+.btn-login {
+  
+}
+
+.nohover {
+  border-bottom: 3px solid #fff !important;
+
+  &:hover {
+    border-bottom: 3px solid #fff !important;
+  }
+}
+
+#search {
+  height: 18pt;
+  border-radius: 2px;
+  border: 1px solid #eee;
+  background-color: #eee;
+  padding: 15px;
+  color: #444;
+  line-height: 18pt;
+  transition: all .2s ease;
+  width: 350px;
+
+  &:focus {
+    border: 1px solid #bbb;
+    width: 450px;
+  }
+}
+
+.color-strip {
+  height: 3px;
+  background-color: #c9302c;
+}
+
+.searchForm {
+  margin-left: 10px;
+  margin-top: 2px;
+}
+
+:focus {
+  outline-color: transparent;
+  outline-style: none;
+}
+
+.jumbotron-dash {
+  // background-image: url('/images/map.png') !important;
+  background-image: url('http://www.misskoreabbq.com/best_korean_bbq_restaurant_nyc/wp-content/uploads/2011/07/BT1H8697A1.jpg') !important;
+  background-position: 0 -700px;
+  color: #fff !important;
+  margin-top: -26px;
+  padding: 50px 0 !important;
+  font-weight: 600 !important;
+
+  input[type='text'] {
+    border: 0;
+    background-color: transparent;
+    border-bottom: 3px solid #fff;
+    font-size: 3em;
+    width: 55%;
+    transition: all .2s ease;
+
+    &:focus {
+      width: 65%;
+    }
+  }
+}
+
+.pageheader {
+  border-bottom: 1px solid #eee;
+  margin-bottom: 50px;
+  margin-top: -25px;
+  padding: 25px 0;
+}
+
+.newEvent {
+  padding-bottom: 1px;
+  padding-top: 2px;
+  width: auto;
+
+  a {
+    background-color: darken(@primary-color, 10%) !important;
+    padding: 15px 0 !important;
+    text-align: center;
+    display: block;
+    transition: all .2s ease;
+
+    &:hover {
+      background-color: darken(@primary-color, 15%) !important;
+    }
+  }
+}
+
+.mce-tinymce {
+  border: 0 !important;
+  margin: 0;
+
+  .mce-edit-area {
+    padding: 15px;
+  }
+}
+
+.event-info {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.modal-dialog {
+  border-radius: 4px;
+
+  .close {
+    margin-top: 10px;
+  }
+}
+
+.modal-header {
+  background-color: @primary-color;
+  color: #fff;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+}
+
+.btn-fiesta {
+  background-color: @primary-color;
+  color: #fff;
+  padding: 15px 25px !important;
+  border-radius: 25px !important;
+  transition: all .2s ease;
+  min-width: 125px;
+  text-align: center;
+
+  &:hover {
+    background-color: lighten(@primary-color, 5%);
+  }
+}
+
+.btn-primary {
+  background-color: @primary-color !important;
+  border: 1px solid darken(@primary-color, 2%) !important;
+  color: #fff;
+  transition: all .2s ease;
+
+  &:hover {
+    background-color: lighten(@primary-color, 5%) !important;
+  }
+}
