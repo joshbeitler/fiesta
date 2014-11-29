@@ -38,3 +38,10 @@ when needed. Here's how it might work:
 to look at eachother's code and keep things clean.
 6. Delete feature branch when pull request is accepted
 7. Profit.
+
+Please note that since we are not on hackathon schedule anymore, your commit
+messages should be nice and informative - this is just good programming
+practice. For example, the commit messages "add stuff" or "ajlkfdak" may have
+been acceptable at Codecamp, but they are not anymore. Good commit messages
+describe what changed and nothing more. For example: "Add testFunc() function to
+EventController to monitor API requests".
