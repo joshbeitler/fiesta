@@ -45,3 +45,15 @@ practice. For example, the commit messages "add stuff" or "ajlkfdak" may have
 been acceptable at Codecamp, but they are not anymore. Good commit messages
 describe what changed and nothing more. For example: "Add testFunc() function to
 EventController to monitor API requests".
+
+## API Keys
+
+Fiesta uses the following services which provide APIs which we consume:
+
+- AWS (for S3)
+- Mandrill
+- Twitter
+- Stripe
+
+If you need any keys, please notify 
+[@joshbeitler](https://github.com/joshbeitler), and he will get you hooked up.

@@ -23,9 +23,6 @@ margin-top: -5px;
   width: 100%;
   padding: 75px 0;
   color: #fff;
-
-  /* TODO: add support for dark header */
-  color: #222;
 }
 
 #info_row a,
@@ -36,9 +33,6 @@ margin-top: -5px;
   transition: all .2s ease;
   cursor: pointer;
   font-size: .7em;
-
-  /* TODO: add support for dark header */
-  color: #222;
 }
 
 #info_row a:hover,
@@ -54,7 +48,6 @@ margin-top: -5px;
 
 .notes {
   color: #333333; 
-  /*font-family: 'Open Sans';*/
   font-size: 14pt;
   line-height: 21pt;
 }
@@ -69,10 +62,6 @@ margin-top: -5px;
   transition: all .2s ease;
   border: 4px solid #fff;
   opacity: 1;
-
-  /* TODO: add support for dark header */
-  color: #fff;
-  background-color: #6cd21a;
 }
 
 #rsvp:hover {
@@ -203,7 +192,7 @@ margin-top: -5px;
       <a href="/event/<%= evt.id %>/manage">Manage Event</a>
     </div>
     <!--
-    <div class="col-lg-3">
+    <div class="col-sm-3">
       <div class="panel panel-default">
         <div class="panel-heading">Owner</div>
         <div class="panel-body">
@@ -352,10 +341,10 @@ margin-top: -5px;
                     </div>
                     <div class="modal-body">
                       <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-sm-6">
                           <button type="button" class="btn btn-primary delete-buttons" data-dismiss="modal">No</button>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-sm-6">
                           <form action="<%= evt.id %>/delete">
                               <input type="submit" class="btn btn-danger delete-buttons" value="Yes">
                           </form>
