@@ -6,6 +6,20 @@
  */
 
 module.exports = {
+  manage: function(req, res) {
+    var moment = require('moment');
+
+    Event.findOneById(req.param('id'))
+    .populate('owner')
+    .populate('location')
+    .exec(function(event_error, event) {
+      res.view('event/manage', {
+        evt: event,
+        moment: moment
+      });
+    });
+  },
+
   newDisp: function(req, res) {
     res.view('event/new', {
       active: 'new',

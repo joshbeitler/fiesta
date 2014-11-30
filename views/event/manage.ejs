@@ -1,0 +1,103 @@
+<div class="pageheader">
+  <h1>Manage <%= evt.name %></h1>
+</div>
+
+<div class="row event-details">
+  <div class="col-sm-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">At a Glance</div>
+      <div class="panel-body">
+        <div class="js-chart"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Event Info
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <i class="fa fa-calendar"></i> <%= evt.date() %> <a href="#"><i class="pull-right fa fa-pencil"></i></a>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <i class="fa fa-map-marker"></i> <%= evt.location.toString() %> <a href="#"><i class="pull-right fa fa-pencil"></i></a>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <i class="fa fa-info-circle"></i> <%= evt.desc %> <a href="#"><i class="pull-right fa fa-pencil"></i></a>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <i class="fa fa-newspaper-o"></i> Event Notes <a href="#"><i class="pull-right fa fa-pencil"></i></a>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <i class="fa fa-users"></i> 5 <!-- attendees -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script>
+  $(function() {
+    $('.js-chart').highcharts({
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: ''
+      },
+      subtitle: {
+        text: ''
+      },
+      xAxis: {
+        categories: [
+          'Jan',
+          'Feb',
+          'Mar',
+          'Apr',
+          'May',
+          'Jun',
+          'Jul',
+          'Aug',
+          'Sep',
+          'Oct',
+          'Nov',
+          'Dec']
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: ''
+        }
+      },
+      plotOptions: {
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0
+        }
+      },
+      series: [{
+        name: 'Tokyo',
+        data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+      }]
+    });
+  });
+</script>

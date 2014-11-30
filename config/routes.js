@@ -84,6 +84,10 @@ module.exports.routes = {
     controller: 'EventController',
     action: 'saveEdit'
   },
+  'get /event/:id/manage': {
+    controller: 'EventController',
+    action: 'manage'
+  },
   'get /event/:id/delete': {
     controller: 'EventController',
     action: 'delete'
