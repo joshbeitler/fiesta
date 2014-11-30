@@ -1,4 +1,4 @@
-![Logo](http://i61.tinypic.com/2mhbd5d.png)
+<img src="docs/resc/logotype-wip-hq.png">
 
 Fiesta is an event management platform designed to make the lives of event 
 planners easier. Fiesta 1.0's planned public launch date is March 31, 2015. Get
