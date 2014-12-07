@@ -10,8 +10,15 @@ planners easier. Fiesta 1.0's planned public launch date is March 31, 2015. Get
 $ git clone https://github.com/joshbeitler/fiesta
 $ cd fiesta
 $ npm install
+$ bower install
 $ sails lift
 ```
+
+### Dependencies
+
+- `nodejs`
+- `bower`
+
 
 ## Work Items
 
