@@ -1,0 +1,27 @@
+{
+  "name": "Fiesta",
+  "version": "0.1.0",
+  "homepage": "https://github.com/joshbeitler/fiesta",
+  "authors": [
+    "Joshua Beitler <joshbeitler@gmail.com>"
+  ],
+  "description": "Online ticketing platform",
+  "main": "app.js",
+  "moduleType": [
+    "amd",
+    "es6",
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "assets/vendor/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1"
+  }
+}

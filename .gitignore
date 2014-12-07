@@ -5,6 +5,8 @@ logs
 # tmp
 .tmp
 
+assets/vendor
+
 # Runtime data
 pids
 *.pid
