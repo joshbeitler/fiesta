@@ -11,6 +11,11 @@ $ git clone https://github.com/joshbeitler/fiesta
 $ cd fiesta
 $ npm install
 $ bower install
+```
+
+### Running
+
+```
 $ sails lift
 ```
 

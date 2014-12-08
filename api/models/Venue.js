@@ -6,7 +6,7 @@
  */
 
 module.exports = {
-
+  // TODO: rename to "Address" model
   attributes: {
     address1: {
       type: 'string',
@@ -20,8 +20,8 @@ module.exports = {
       type: 'string',
       required: true
     },
-    // TODO: upgrade to 'state' model
     state: {
+      // TODO: upgrade to 'state' model
       type: 'string',
       required: true
     },

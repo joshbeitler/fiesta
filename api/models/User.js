@@ -8,12 +8,6 @@
 
 module.exports = {
   attributes: {
-
-    /* e.g.
-  	nickname: 'string'
-  	*/
-    // email: 'string',
-    // password: 'string'
     email: {
       type: 'email',
       required: true
@@ -42,6 +36,10 @@ module.exports = {
     bio: {
       type: 'string',
       required: false
+    },
+    address: {
+      model: 'venue',
+      required: false
     }
   },
 
@@ -66,5 +64,4 @@ module.exports = {
   fullName: function(user, next) {
     return user.firstName + " " + user.lastName;
   }
-
 };
